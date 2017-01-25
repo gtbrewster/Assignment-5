@@ -88,7 +88,7 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
             $state.go('listings.list', { successMessage: 'Listing succesfully created!' });
       }, function(error) {
         //otherwise display the error
-        $scope.error = 'Unable to delete listing!\n' + error;
+        $scope.error = 'Unable to delete listing while editing!\n' + error;
       });
 
       /* Create the listing object */
@@ -116,7 +116,14 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
         Implement the remove function. If the removal is successful, navigate back to 'listing.list'. Otherwise,
         display the error.
        */
-    };
+       Listings.delete(listing)
+          .then(function(response) {
+              //if the object is successfully saved redirect back to the list page
+                $state.go('listings.list', { successMessage: 'Listing succesfully created!' });
+          }, function(error) {
+              //otherwise display the error
+              $scope.error = 'Unable to delete listing!\n' + error;
+          };
 
     /* Bind the success message to the scope if it exists as part of the current state */
     if($stateParams.successMessage) {
