@@ -1,7 +1,7 @@
 <div class="row" ng-controller="ListingsController">
   <div class="col-md-offset-1 col-md-10 formWrapper">
     <div class="page-header">
-      <h3>Edit Listing</h3>
+      <h3 ng-show="listing">Edit Listing - {{ listing.code }}</h3>
       <!--
         Validation of forms is important to ensure that a user submits the correct information. Angular provides
         some useful APIs for validating forms. Documentation can be found here:
